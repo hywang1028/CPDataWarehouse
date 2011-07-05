@@ -1,0 +1,86 @@
+        public void Main()
+        {
+            //Get input File and Directory
+            string baseFileName = "DailyTransLog.txt";
+            bool isAppendExtract = true;
+            string inputFolder = Dts.Variables["ProductionDataInputFolder"].Value.ToString();
+            string destFolder = Dts.Variables["ProductionDataDestinationFolder"].Value.ToString();
+            string backupFolder = Dts.Variables["ProductionDataBackupFolder"].Value.ToString();
+
+            //Construct inputFilePath, destFilePath, backupFilePath
+            string inputFilePath = GetInputFilePath(inputFolder, baseFileName, isAppendExtract);
+            string destFilePath = GetDestFilePath(destFolder, baseFileName);
+            string backupFilePath = GetBackupFilePath(backupFolder, inputFilePath);
+
+            if (File.Exists(inputFilePath))
+            {
+                //If Dest File already exists, rename it
+                if (isAppendExtract)
+                {
+                    RenameExistingDestFile(destFilePath, baseFileName);
+                }
+
+                //Copy and Rename input file to destination folder
+                CopyInputFileToDestFolder(inputFilePath, destFilePath);
+
+                //Move Input file to Backup folder
+                MoveInputFileToBackupFolder(inputFilePath, backupFilePath);
+
+                Dts.TaskResult = (int)ScriptResults.Success;
+            }
+            else
+            {
+                Dts.TaskResult = (int)ScriptResults.Failure;
+            }            
+        }
+
+        private string GetInputFilePath(string inputFolder, string baseFileName, bool isAppendExtract)
+        {
+            string inputFileName = string.Empty;
+            if (isAppendExtract)
+            {
+                inputFileName = string.Format("{0}{1}.txt",
+                    Path.GetFileNameWithoutExtension(baseFileName),
+                    DateTime.Today.ToString("yyyyMMdd"));
+            }
+            else
+            {
+                inputFileName = baseFileName;
+            }
+             
+            string inputFilePath = Path.Combine(inputFolder, inputFileName);
+            return inputFilePath;
+        }
+
+        private string GetDestFilePath(string destFolder, string baseFileName)
+        {
+            string destFilePath = Path.Combine(destFolder, baseFileName);
+            return destFilePath;
+        }
+
+        private string GetBackupFilePath(string backupFolder, string inputFilePath)
+        {
+            string backupFilePath = Path.Combine(backupFolder, Path.GetFileName(inputFilePath));
+            return backupFilePath;
+        }
+
+        private void CopyInputFileToDestFolder(string inputFilePath, string destFilePath)
+        {
+            File.Copy(inputFilePath, destFilePath, true);
+        }
+
+        private void RenameExistingDestFile(string destFilePath, string baseFileName)
+        {
+            if (File.Exists(destFilePath))
+            {
+                string targetFileName = string.Format("{0}_{1}", DateTime.Now.ToString("yyyy-MM-dd hh-mm-ss"), baseFileName);
+                string targetFilePath = Path.Combine(Path.GetDirectoryName(destFilePath), targetFileName);
+                File.Move(destFilePath, targetFilePath);
+            }
+        }
+
+        private void MoveInputFileToBackupFolder(string inputFilePath, string backupFilePath)
+        {
+            File.Copy(inputFilePath, backupFilePath, true);
+            File.Delete(inputFilePath);
+        }

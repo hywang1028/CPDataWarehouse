@@ -1,0 +1,91 @@
+取支付数据脚本：
+1. 取Daily Trans Log数据（增量，输出文件名为DailyTransLog20110413.txt，文件名后8位为时间戳，只需要细到天，where中的时间条件是相对的）
+Select
+	trans_date, 
+	mer_id, 
+	(select mer_name from mer_info where mer_id = a.mer_id), 
+	gate_id, 
+	pay_suc_cnt + pay_fai_cnt, 
+	pay_suc_amt + pay_fai_amt, 
+	pay_suc_cnt, 
+	pay_suc_amt
+From 
+	trans_log_collect
+where
+	trans_date >= '20110411'
+	and
+	trans_date < '20110412'
+with ur;
+
+2. 取Payment Merchants数据（输出文件名为PaymentMerchants.txt）
+select
+	MER_ID,
+	MER_NAME,
+	STAT_FLAG
+from
+	MER_INFO
+with ur;
+
+3. 取Payment Gates数据（输出文件名为PaymentGates.txt）
+select
+	GATE_ID,
+	STAT_FLAG,
+	GATE_DESC,
+	RESV,
+	FEE_RATE
+from
+	GATE_ROUTE
+with ur;
+
+4. 取Payment Facility数据
+select
+	INSTU_ID,
+	INSTU_NAME,
+	INSTU_TYPE,
+	STAT
+from
+	INSTU_INFO
+with ur;
+
+5. 取Payment Facility与Merchant对应数据
+select
+	INSTU_ID,
+	MER_ID,
+	STAT
+from
+	INSTU_MER_INFO
+with ur;
+
+取ORA数据脚本：
+1. 取ORA Trans Sum数据（增量，输出文件名为OraTransSum20110413.txt，文件名后8位为时间戳，只需要细到天，where中的时间条件是相对的）
+SELECT
+	MER_ID,
+	BANK_SETTING_ID,
+	CP_DATE,
+	TRANS_COUNT,
+	rtrim(TRANS_AMT) TRANS_AMT,
+	rtrim(FEE_AMT) FEE_AMT
+FROM
+	ORA_TRANS_SUM
+where
+	CP_DATE >= '20110411'
+	and
+	CP_DATE < '20110412'
+with ur;
+
+2. 取ORA Merchants数据（输出文件名为OraMerchants.txt）
+SELECT 
+	MER_ID,
+	MER_NAME
+FROM
+	MER_INFO
+with ur;
+
+3. 取ORA Bank Setting数据（输出文件名为OraBankSetting.txt）
+SELECT
+	ID,
+	BANK_ID,
+	rtrim(BANK_DESC) BANK_DESC
+FROM
+	ORA_BANK_SETTING
+with ur;

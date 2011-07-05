@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{D183A3D8-5FD8-494B-B014-37F57B35E655}") = "ETL.Payment", "ETL.Payment\ETL.Payment.dtproj", "{181EC54F-3AA0-4B11-9B58-F2BD14A38A99}"
+EndProject
+Project("{D183A3D8-5FD8-494B-B014-37F57B35E655}") = "ETL.ConfigurableReport", "ETL.ConfigurableReport\ETL.ConfigurableReport.dtproj", "{B3D86FA7-A268-4288-90C7-A77FB77D7B8B}"
+EndProject
+Project("{D183A3D8-5FD8-494B-B014-37F57B35E655}") = "ETL.BizDeptReport", "ETL.BizDeptReport\ETL.BizDeptReport.dtproj", "{D22B473E-A38C-44D6-B4AB-BE4A6B6FA8FB}"
+EndProject
+Project("{D183A3D8-5FD8-494B-B014-37F57B35E655}") = "ETL.Ora", "ETL.Ora\ETL.Ora.dtproj", "{418F942B-1019-4D12-AAF0-02CA2F9A899F}"
+EndProject
+Project("{D183A3D8-5FD8-494B-B014-37F57B35E655}") = "ETL.SalesDeptReport", "ETL.SalesDeptReport\ETL.SalesDeptReport.dtproj", "{0903237A-1C95-493F-AE85-17F31BCC726D}"
+EndProject
+Project("{D183A3D8-5FD8-494B-B014-37F57B35E655}") = "ETL.ProductionDataPreparation", "ETL.ProductionDataPreparation\ETL.ProductionDataPreparation.dtproj", "{E86536A5-7F29-4AFA-8184-7EEF2DA15B45}"
+EndProject
+Project("{D183A3D8-5FD8-494B-B014-37F57B35E655}") = "ETL.Fund", "ETL.Fund\ETL.Fund.dtproj", "{35793D4F-3462-473B-AADB-2552AF76FF4B}"
+EndProject
+Project("{D183A3D8-5FD8-494B-B014-37F57B35E655}") = "ETL.FinancialServiceDeptReport", "ETL.FinancialServiceDeptReport\ETL.FinancialServiceDeptReport.dtproj", "{508515B5-A2ED-45C3-BB62-C0074757C39D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{181EC54F-3AA0-4B11-9B58-F2BD14A38A99}.Development|Default.ActiveCfg = Development
+		{181EC54F-3AA0-4B11-9B58-F2BD14A38A99}.Development|Default.Build.0 = Development
+		{B3D86FA7-A268-4288-90C7-A77FB77D7B8B}.Development|Default.ActiveCfg = Development
+		{B3D86FA7-A268-4288-90C7-A77FB77D7B8B}.Development|Default.Build.0 = Development
+		{D22B473E-A38C-44D6-B4AB-BE4A6B6FA8FB}.Development|Default.ActiveCfg = Development
+		{D22B473E-A38C-44D6-B4AB-BE4A6B6FA8FB}.Development|Default.Build.0 = Development
+		{418F942B-1019-4D12-AAF0-02CA2F9A899F}.Development|Default.ActiveCfg = Development
+		{418F942B-1019-4D12-AAF0-02CA2F9A899F}.Development|Default.Build.0 = Development
+		{0903237A-1C95-493F-AE85-17F31BCC726D}.Development|Default.ActiveCfg = Development
+		{0903237A-1C95-493F-AE85-17F31BCC726D}.Development|Default.Build.0 = Development
+		{E86536A5-7F29-4AFA-8184-7EEF2DA15B45}.Development|Default.ActiveCfg = Development
+		{E86536A5-7F29-4AFA-8184-7EEF2DA15B45}.Development|Default.Build.0 = Development
+		{35793D4F-3462-473B-AADB-2552AF76FF4B}.Development|Default.ActiveCfg = Development
+		{35793D4F-3462-473B-AADB-2552AF76FF4B}.Development|Default.Build.0 = Development
+		{508515B5-A2ED-45C3-BB62-C0074757C39D}.Development|Default.ActiveCfg = Development
+		{508515B5-A2ED-45C3-BB62-C0074757C39D}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
